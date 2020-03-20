@@ -1,0 +1,219 @@
+body {
+  color: #ffffff;
+}
+
+.logo {
+  width: 50%;
+}
+
+input.form-control,
+select.form-control:focus {
+  outline: none !important;
+}
+
+.navbar {
+  background-color: #231f20 !important;
+  padding-top: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
+navbar {
+  padding: 0;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  border: 0px !important;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+  border: 0px !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 1);
+}
+
+.navbar-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.navbar-bottom span {
+  margin-right: 2vw;
+  margin-left: 2vw;
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+}
+
+.nav-link-bottom {
+  color: rgba(255, 255, 255, 1);
+  text-decoration: underline;
+  margin: 16px;
+}
+
+.nav-link-bottom:hover {
+  color: #eb5017 !important;
+  text-decoration: none !important;
+}
+
+.nav-item {
+  border-right: 1px solid #eb5017 !important;
+}
+
+.nav-item:hover {
+  background-color: #eb5017 !important;
+}
+
+.last {
+  border-right: 0 !important;
+}
+
+dl,
+ol,
+ul {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.number a {
+  color: #f18760;
+}
+
+.calk {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.calk h3 {
+  color: #ed794e;
+}
+
+#subforezult {
+  background-color: #ffffff !important;
+  border: 1px solid #cccccc !important;
+  color: #395306;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#labelsubforezult {
+  color: #395306;
+  display: none;
+}
+
+.delarrow {
+  -moz-appearance: textfield;
+}
+.delarrow::-webkit-inner-spin-button {
+  display: none;
+}
+
+.footer {
+  position: absolute;
+  bottom: 100px;
+}
+
+/*---------------------------------------------------------------*/
+
+input[type="range"] {
+  -webkit-appearance: none; /* Скрывает слайдер, чтобы можно было создать свой */
+  width: 100%; /* Указание параметра ширины требуется для Firefox. */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+  outline: none; /* Убирает голубую границу у элемента. Но не везде */
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent; /* Скрывает слайдер, чтобы можно было добавить собственные стили. */
+  border-color: transparent;
+  color: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: #000000;
+  border-radius: 5px;
+  box-shadow: 0px 0px 0px 8px #f2f2f2;
+}
+input[type="range"]::-webkit-slider-thumb {
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: 0px;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #000000;
+}
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: #000000;
+  border-radius: 5px;
+  box-shadow: 0px 0px 0px 8px #f2f2f2;
+}
+input[type="range"]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type="range"]::-ms-track {
+  width: 100%;
+  height: 16px;
+  cursor: pointer;
+  background: #000000;
+  border-radius: 5px;
+  box-shadow: 0px 0px 0px 8px #f2f2f2;
+}
+
+input[type="range"]::-ms-thumb {
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type="range"]:focus::-ms-fill-lower {
+  background: #000000;
+}
+input[type="range"]:focus::-ms-fill-upper {
+  background: #000000;
+}
+
+.form-control {
+  width: 100% !important;
+}
+.breadcrumb {
+  background: #ffffff;
+}
+
+.breadcrumb > li + li:before {
+  color: #cccccc;
+  content: "-" !important;
+  padding: 0 5px;
+}
+.breadcrumb-item a {
+  color: #000000 !important;
+  text-decoration: underline !important;
+}
