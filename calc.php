@@ -24,7 +24,7 @@ error_reporting(E_ALL);
 */
 
 if (!($_POST['znacheniedaty']) || !($_POST['summavklada']) || !($_POST['srokvklada'])) {
-   echo ('ПРОВЕРЬТЕ ВВЕДЕНЫЕ ДАННЫЕ :(');
+   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :(');
    exit();
 }
 
@@ -34,7 +34,7 @@ $srokvklada = $_POST['srokvklada'];
 $summapopolneniya = $_POST['summapopolneniya'];
 
 if ($summavklada < 1000 || $summavklada > 3000000  || $summapopolneniya > 3000000) {
-   echo ('ПРОВЕРЬТЕ ВВЕДЕНЫЕ ДАННЫЕ :(');
+   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :(');
    exit();
 }
 
