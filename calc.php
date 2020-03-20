@@ -63,7 +63,6 @@ $srokvkladamonth = $srokvklada * 12; //количество месцев в ср
 
 
 
-//echo('DATA VKLADA - '.$startday.'/'.$startmonth.'/'.$startyear.'<br>');
 
 /*ТУТ БЫЛ КУСОК КОТОРЫЙ РАСЧИТЫВАЛ ПРОЦЕНТ ПО ВКЛАДУ ОТДЕЛЬНО ДЛЯ МЕСЯЦЕВ ОТКРЫТИЯ И ЗАКРЫТИЯ ВКЛАДА
 НА СЛУЧАЙ ЕСЛИ ЭТО ФЕВРАЛИ И В НИХ РАЗНОЕ КОЛИЧЕСТВО ДНЕЙ. НО В ЗАДАНИИ ЭТОГО НЕ БЫЛО ПОЭТОМУ УБРАЛ
@@ -86,7 +85,6 @@ while ($n <= $srokvkladamonth) {
 
    if ($month > 12) //расчет для следующего по порядку года
    {
-      //echo('<br>hpn! btch!<br> ');
       $year++;
       $month = 1;
       $daysy = visokos($year); //количество дней в этом году
@@ -102,7 +100,7 @@ while ($n <= $srokvkladamonth) {
    $addmonth = round($addmonth, 2); // округляем до двух знаков
    $summn = $summn + $addmonth + $summapopolneniya;
 
-   //echo(' DAY - '.$daysn.'<br>'.$daysy.'<br>'.$addmonth.'<br>'.$summn.'<br>==============END MONTH ==================<br>');
+   
 
    $month++;
    $n++;
@@ -130,7 +128,7 @@ function monthdays($mn, $ye)
 }
 
 
-/*количество дней в годут*/
+/*количество дней в году*/
 
 function visokos($ye)
 {
@@ -138,7 +136,7 @@ function visokos($ye)
    if ($ye % 4 == 0 && $ye % 100 != 0 || $ye % 400 == 0) {
       return 366; //високсный
    } else {
-      return 365; //невисоксный
+      return 365; //не високосный
    }
 }
 
@@ -172,7 +170,7 @@ function stroki($filtruem, $lengs)
  // деприкейт  $filtruem = filter_var($filtruem, FILTER_SANITIZE_MAGIC_QUOTES);
    $filtruem = str_ireplace('select', '*', $filtruem);
    $filtruem = str_ireplace('from', '*', $filtruem);
-   $filtruem = str_ireplace('update', '*', $filtruem); //SHOW TABLES DROP WHERE ORDER CHANGE TABLE INTO CREATE USE
+   $filtruem = str_ireplace('update', '*', $filtruem); 
    $filtruem = str_ireplace('show', '*', $filtruem);
    $filtruem = str_ireplace('table', '*', $filtruem);
    $filtruem = str_ireplace('drop', '*', $filtruem);
