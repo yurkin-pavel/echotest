@@ -253,6 +253,7 @@
     <option value="2">2 года</option>
     <option value="3">3 года</option>
     <option value="4">4 года</option>
+    <option value="5">5 лет</option>
     </select></div>
                                     <div class="col-12 col-md-5"></div>
                                 </div>
