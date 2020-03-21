@@ -24,7 +24,7 @@
         $(document).ready(function() {
             $('#datepicker').datepicker();
             //деактивируем поля вкладов и кнопку 
-            $("#input_add,rangeinputadd").prop("disabled", true);
+            $("#input_add").prop("disabled", true);
             $("#rangeinputadd").prop("disabled", true);
             $("#subforezult").prop("disabled", true);
 
@@ -102,13 +102,12 @@
                     .done(function(data) {
                         $('#labelsubforezult').css("display", "inline");
 						
-						var formatter = new Intl.NumberFormat("ru", {
+			var formatter = new Intl.NumberFormat("ru", {
                             style: "currency",
                             currency: "RUB"
                                });
-							var reslt=formatter.format(data);
-			
-                        $('#result').html(reslt);
+			var reslt=formatter.format(data);
+			 $('#result').html(reslt);
 
                     });
                 }
