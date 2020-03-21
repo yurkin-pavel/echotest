@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,19 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/js/datepicker-ru.js"></script>
-
-
-
-
-
-
 
     <script>
         $(document).ready(function() {
@@ -41,7 +32,6 @@
 
 
             /*СВЯЗЬ РАДИОКНОПКИ И ПОЛЕ ПОПОЛНЕНИЯ ВКЛАДА*/
-
 
             $("#yes").click(function() {
                 $("#input_add").prop("disabled", false);
@@ -74,7 +64,8 @@
                 }
 
                 var summavklada = $('input[name*="input_summ"]').val();
-                if (!summavklada || summavklada < 1000 || summavklada > 3000000) //проверка суммы вклада
+				summavklada =parseInt(summavklada, 10);
+                if (isNaN(summavklada) || !summavklada || summavklada < 1000 || summavklada > 3000000) //проверка суммы вклада
                 {
                     flagforsend = 0;
                     $('#result').html('Сумма вклада должна быть от 1000 руб. до 3 000 000 руб.');
@@ -85,7 +76,8 @@
 
                 if ($("#yes").prop("checked") == true) {
                     summapopolneniya = $('input[name*="input_add"]').val();
-                    if (!summavklada || summapopolneniya < 1000 || summapopolneniya > 3000000) {
+					summapopolneniya =parseInt(summapopolneniya, 10);
+                    if (isNaN(summapopolneniya) ||!summavklada || summapopolneniya < 1000 || summapopolneniya > 3000000) {
                         flagforsend = 0;
                         $('#result').html('Сумма пополнения должна быть от 1000 руб. до 3 000 000 руб.');
                     }
@@ -109,7 +101,14 @@
 
                     .done(function(data) {
                         $('#labelsubforezult').css("display", "inline");
-                        $('#result').html(data);
+						
+						var formatter = new Intl.NumberFormat("ru", {
+                            style: "currency",
+                            currency: "RUB"
+                               });
+							var reslt=formatter.format(data);
+			
+                        $('#result').html(reslt);
 
                     });
                 }
@@ -145,11 +144,6 @@
 
 
 
-
-
-
-
-
                 <nav class="navbar sticky-top navbar-expand-md navbar-dark   fixed-top font-weight-bold ">
                     <div class="container-fluid p-0">
 
@@ -160,14 +154,9 @@
                             <div class="navbar-nav d-flex w-100 justify-content-around align-items-stretch">
                                 <ul class="collapse navbar-collapse w-100 p-0  nav-tabs list-unstyled" id="collapsibleNavbar">
 
-
-
-
                                     <li class="nav-item   flex-fill text-center" data-toggle="collapse" data-target=".navbar-collapse.show">
                                         <a class="nav-link   " href="#">Кредитная карта</a>
                                     </li>
-
-
 
                                     <li class="nav-item  flex-fill text-center ">
                                         <a class="nav-link " href="#">Вклады</a>
@@ -186,20 +175,11 @@
                                         <a class="nav-link" href="#" onclick="location.href='#';">Интернет-банк</a>
                                     </li>
 
-
                                 </ul>
                             </div>
                         </div>
-
-
                     </div>
-
                 </nav>
-
-
-
-
-
 
 
                 <div class="row d-block d-md-none mt-1">
@@ -224,16 +204,12 @@
                     </ol>
                 </nav>
 
-
                 <!--КАЛЬКУЛЯТОР-->
 
                 <div class="row">
 
                     <div class="col-12 col-md-8  mb-5 mt-2 mt-md-5 ml-0 ml-md-4 calk">
-
-
                         <div class="container-fluid  ">
-
                             <div class="row">
                                 <div class="col-12 col-md-1"></div>
                                 <div class="col-12 col-md-3">
@@ -244,11 +220,8 @@
                         </div>
 
 
-
-
                         <form method="post">
                             <div class="container-fluid  ">
-
                                 <div class="form-group row">
                                     <div class="col-12 col-md-3">
                                         <p class="text-left text-md-right">Дата оформления вклада </p>
@@ -270,8 +243,6 @@
                                         <label for="rangeinputsumm" class="rangetext font-weight-light font-italic">1 тыс. руб.</label> <label for="rangeinputsumm" class="rangetext font-weight-light float-right font-italic">3 000 000</label>
                                     </div>
                                 </div>
-
-
 
                                 <div class="form-group row">
                                     <div class="col-12 col-md-3">
@@ -300,9 +271,7 @@
                                     <div class="col-12 col-md-5"></div>
                                 </div>
 
-
-
-
+								
                                 <div class="form-group row">
                                     <div class="col-12 col-md-3 ">
                                         <p class="text-left text-md-right">Сумма пополнения вклада</p>
@@ -315,39 +284,21 @@
                                         <label for="rangeinputadd" class="rangetext font-weight-light font-italic">1 тыс. руб.</label> <label for="rangeinputadd" class="rangetext font-weight-light float-right font-italic">3 000 000</label>
                                     </div>
                                 </div>
-                                <input type="button" value="Рассчитать" class="btn  btn-start mb-2" id="subforezult"> <label class="form-check-label mx-2" id="labelsubforezult">Результат:</label> <span id="result"></span>
+								 <div class="container-fluid ">
+                                     <div class="row ">
+                                       <div class="d-flex col-12 justify-content-center col-md-2 justify-content-md-end">
+                                <input type="button" value="Рассчитать" class="btn  btn-start mb-2" id="subforezult"> 
+								 </div>
+								  <div class="col-12 col-md-10">
+								  <label class="form-check-label mx-11" id="labelsubforezult">Результат:</label> 
+								<span id="result"></span>
+								 </div> </div> </div>
+								
                             </div>
-
-
-
 
                         </form>
                     </div>
                 </div>
-
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-                <p>---</p>
-
 
             </div>
         </div>
@@ -356,9 +307,7 @@
 
     <div class="container-fluid fixed-bottom">
 
-
         <div class="row">
-
             <div class="col-12 d-none d-md-block">
                 <nav class="navbar navbar-expand-md navbar-dark ">
                     <div class="container-fluid p-0 ">
@@ -367,11 +316,9 @@
                                 <span>
           <a class="nav-link-bottom" href="#">Кредитная карта</a>
         </span>
-
                                 <span>
             <a class="nav-link-bottom" href="#">Вклады</a>
 		 </span>
-
                                 <span>
           <a class="nav-link-bottom" href="#">Дебетовая карта</a>
         </span>
@@ -392,35 +339,5 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>
