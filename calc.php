@@ -33,20 +33,38 @@ $summavklada = $_POST['summavklada'];
 $srokvklada = $_POST['srokvklada'];
 $summapopolneniya = $_POST['summapopolneniya'];
 
-if ($summavklada < 1000 || $summavklada > 3000000  || $summapopolneniya > 3000000) {
-   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :(');
+/*ФИЛЬТРАЦИЯ*/
+
+
+if(!is_numeric($summavklada) || !is_numeric($summapopolneniya) || !is_numeric($srokvklada))
+{
+   echo ('ПРОВЕРЬТЕ ВВЕДНЕННЫЕ ДАННЫЕ :(');
    exit();
 }
 
-/*ФИЛЬТРАЦИЯ*/
-$summapopolneniya = (int) $summapopolneniya;
-$summavklada = (int) $summavklada;
+$summavklada = (int)$summavklada;
+$srokvklada= (int)$srokvklada;
+$summapopolneniya = (int)$summapopolneniya;
 
-$summavklada = chisla($summavklada, 7);
-$summapopolneniya = chisla($summapopolneniya, 7);
-//echo($summapopolneniya);
 
-$srokvklada = chisla($srokvklada, 1);
+$summavklada = round($summavklada);
+$srokvklada = round($srokvklada);
+$summapopolneniya = round($summapopolneniya);
+
+
+if ($summavklada < 1000 || $summavklada > 3000000  || $summapopolneniya > 3000000 || $srokvklada > 5 || $srokvklada < 1)
+{
+   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :-(');
+   exit();
+}
+
+if ($summapopolneniya > 0 && $summapopolneniya < 1000)
+{
+   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :-((');
+   exit();
+}
+
+$znacheniedaty = substr($znacheniedaty, 0, 10);//dd.mm.yyyy - 10 знаков
 
 /*выделяем месяц и год*/
 $startmonth = substr($znacheniedaty, 3, 2);
@@ -60,9 +78,6 @@ $startyear = (int) $startyear;
 
 
 $srokvkladamonth = $srokvklada * 12; //количество месцев в сроке вклада 
-
-
-
 
 /*ТУТ БЫЛ КУСОК КОТОРЫЙ РАСЧИТЫВАЛ ПРОЦЕНТ ПО ВКЛАДУ ОТДЕЛЬНО ДЛЯ МЕСЯЦЕВ ОТКРЫТИЯ И ЗАКРЫТИЯ ВКЛАДА
 НА СЛУЧАЙ ЕСЛИ ЭТО ФЕВРАЛИ И В НИХ РАЗНОЕ КОЛИЧЕСТВО ДНЕЙ. НО В ЗАДАНИИ ЭТОГО НЕ БЫЛО ПОЭТОМУ УБРАЛ
@@ -100,8 +115,6 @@ while ($n <= $srokvkladamonth) {
    $addmonth = round($addmonth, 2); // округляем до двух знаков
    $summn = $summn + $addmonth + $summapopolneniya;
 
-   
-
    $month++;
    $n++;
 }
@@ -128,7 +141,7 @@ function monthdays($mn, $ye)
 }
 
 
-/*количество дней в году*/
+/*количество дней в годут*/
 
 function visokos($ye)
 {
@@ -136,49 +149,8 @@ function visokos($ye)
    if ($ye % 4 == 0 && $ye % 100 != 0 || $ye % 400 == 0) {
       return 366; //високсный
    } else {
-      return 365; //не високосный
+      return 365; //невисоксный
    }
 }
 
 
-function chisla($filtruem, $lengs)
-{
-   $filtruem = trim($filtruem);
-   $filtruem = strip_tags($filtruem);
-   if ($lengs) {
-      $filtruem = substr($filtruem, 0, $lengs);
-   }
-   $filtruem = htmlspecialchars($filtruem);
-   $filtruem = filter_var($filtruem, FILTER_SANITIZE_NUMBER_INT);
-   $filtruem = str_replace('+', '', $filtruem);
-   $filtruem = str_replace('-', '', $filtruem);
-   $filtruem = intval($filtruem);
-   return  $filtruem;
-}
-
-
-function stroki($filtruem, $lengs)
-{
-   $filtruem = trim($filtruem);
-   $filtruem = strip_tags($filtruem);
-   $filtruem = str_replace('+', '', $filtruem);
-   //$filtruem=str_replace('-','',$filtruem);
-   if ($lengs) {
-      $filtruem = substr($filtruem, 0, $lengs);
-   }
-   //$filtruem=htmlspecialchars($filtruem);
- // деприкейт  $filtruem = filter_var($filtruem, FILTER_SANITIZE_MAGIC_QUOTES);
-   $filtruem = str_ireplace('select', '*', $filtruem);
-   $filtruem = str_ireplace('from', '*', $filtruem);
-   $filtruem = str_ireplace('update', '*', $filtruem); 
-   $filtruem = str_ireplace('show', '*', $filtruem);
-   $filtruem = str_ireplace('table', '*', $filtruem);
-   $filtruem = str_ireplace('drop', '*', $filtruem);
-   $filtruem = str_ireplace('where', '*', $filtruem);
-   $filtruem = str_ireplace('order', '*', $filtruem);
-   $filtruem = str_ireplace('change', '*', $filtruem);
-   $filtruem = str_ireplace('into', '*', $filtruem);
-   $filtruem = str_ireplace('create', '*', $filtruem);
-   $filtruem = str_ireplace('use', '*', $filtruem);
-   return  $filtruem;
-}
