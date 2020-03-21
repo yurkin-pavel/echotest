@@ -38,7 +38,7 @@ $summapopolneniya = $_POST['summapopolneniya'];
 
 if(!is_numeric($summavklada) || !is_numeric($summapopolneniya) || !is_numeric($srokvklada))
 {
-   echo ('ПРОВЕРЬТЕ ВВЕДНЕННЫЕ ДАННЫЕ :(');
+   echo ('ПРОВЕРЬТЕ ВВЕДЕННЫЕ ДАННЫЕ :(');
    exit();
 }
 
